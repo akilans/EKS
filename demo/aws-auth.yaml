@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      - system:node-proxier
+      rolearn: arn:aws:iam::839927957243:role/eksctl-eks-demo-cluster-FargatePodExecutionRole-699853TROJ00
+      username: system:node:{{SessionName}}
+  mapUsers: |
+    - userarn: arn:aws:iam::839927957243:user/eks-demo-admin
+      username: eks-demo-admin
+      groups:
+        - system:masters
+    - userarn: arn:aws:iam::839927957243:user/eks-admcoe-read
+      username: eks-admcoe-read
+      groups:
+        - admcoe-reader
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"mapRoles":"- groups:\n  - system:bootstrappers\n  - system:nodes\n  - system:node-proxier\n  rolearn: arn:aws:iam::839927957243:role/eksctl-eks-demo-cluster-FargatePodExecutionRole-699853TROJ00\n  username: system:node:{{SessionName}}\n","mapUsers":"- userarn: arn:aws:iam::839927957243:user/eks-demo-admin\n  username: eks-demo-admin\n  groups:\n    - system:masters\n- userarn: arn:aws:iam::839927957243:user/eks-prod-read\n  username: eks-prod-read\n  groups:\n    - prod-reader\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2020-08-22T10:29:03Z","name":"aws-auth","namespace":"kube-system","resourceVersion":"846","selfLink":"/api/v1/namespaces/kube-system/configmaps/aws-auth","uid":"7f54631e-b6e0-401e-bcd1-9e1fc1e62597"}}
+  creationTimestamp: "2020-08-22T10:29:03Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "9170"
+  selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
+  uid: 7f54631e-b6e0-401e-bcd1-9e1fc1e62597

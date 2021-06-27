@@ -1,0 +1,28 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::839927957243:role/eksctl-EKS-course-cluster-nodegro-NodeInstanceRole-1F1CC73XUWE9T
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |
+    - userarn: arn:aws:iam::839927957243:user/eks-cluster-admin
+      username: eks-cluster-admin
+      groups:
+        - system:masters
+    - userarn: arn:aws:iam::839927957243:user/eks-prod-read
+      username: eks-prod-read
+      groups:
+        - prod-reader
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"mapRoles":"- groups:\n  - system:bootstrappers\n  - system:nodes\n  rolearn: arn:aws:iam::839927957243:role/eksctl-EKS-course-cluster-nodegro-NodeInstanceRole-1F1CC73XUWE9T\n  username: system:node:{{EC2PrivateDNSName}}\n","mapUsers":"- userarn: arn:aws:iam::839927957243:user/eks-cluster-admin\n  username: eks-cluster-admin\n  groups:\n    - system:masters\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2020-07-29T22:16:32Z","name":"aws-auth","namespace":"kube-system","resourceVersion":"599","selfLink":"/api/v1/namespaces/kube-system/configmaps/aws-auth","uid":"d0fe257b-8101-43eb-a0c0-44337ec69f37"}}
+  creationTimestamp: "2020-07-29T22:16:32Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "2348"
+  selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
+  uid: d0fe257b-8101-43eb-a0c0-44337ec69f37
